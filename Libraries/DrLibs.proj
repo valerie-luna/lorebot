@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup Condition="'$(ARM)'!='true'">
+        <GccCompiler>gcc</GccCompiler>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(ARM)'=='true'">
+        <GccCompiler>aarch64-linux-gnu-gcc</GccCompiler>
+    </PropertyGroup>
+
+    <Target Name="MakeDrMp3" BeforeTargets="CoreCompile">
+        <Exec Command="cp dr_mp3.h tests/bin/dr_mp3.c" WorkingDirectory="../Libraries/DrLibs" />
+        <Exec Command="$(GccCompiler) -c -Wall -Werror -fpic -DDR_MP3_IMPLEMENTATION -DDRMP3_DLL tests/bin/dr_mp3.c -o tests/bin/dr_mp3.o" WorkingDirectory="../Libraries/DrLibs" />
+        <Exec Command="$(GccCompiler) -shared -o tests/bin/dr_mp3.so tests/bin/dr_mp3.o" WorkingDirectory="../Libraries/DrLibs" />
+    </Target>
+
+    <Target Name="MakeDrWav" BeforeTargets="CoreCompile">
+        <Exec Command="cp dr_wav.h tests/bin/dr_wav.c" WorkingDirectory="../Libraries/DrLibs" />
+        <Exec Command="$(GccCompiler) -c -Wall -Werror -fpic -DDR_WAV_IMPLEMENTATION -DDRWAV_DLL tests/bin/dr_wav.c -o tests/bin/dr_wav.o" WorkingDirectory="../Libraries/DrLibs" />
+        <Exec Command="$(GccCompiler) -shared -o tests/bin/dr_wav.so tests/bin/dr_wav.o" WorkingDirectory="../Libraries/DrLibs" />
+    </Target>
+
+    <ItemGroup>
+        <Content Include="$(ProjectDir)../Libraries/DrLibs/tests/bin/dr_wav.so;$(ProjectDir)../Libraries/DrLibs/tests/bin/dr_mp3.so" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="MakeFlac" BeforeTargets="CoreCompile" Condition="'$(ARM)'!='true'">
+        <Exec Command="./autogen.sh" WorkingDirectory="../Libraries/Flac"/>
+        <Exec Command="./configure --disable-doxygen-docs" WorkingDirectory="../Libraries/Flac"/>
+        <Exec Command="make" WorkingDirectory="../Libraries/Flac" />
+    </Target>
+
+    <Target Name="MakeFlacArm" BeforeTargets="CoreCompile" Condition="'$(ARM)'=='true'">
+        <Exec Command="./autogen.sh" WorkingDirectory="../Libraries/Flac"/>
+        <Exec Command="./configure --disable-doxygen-docs --host=aarch64-linux-gnu --disable-ogg" WorkingDirectory="../Libraries/Flac"/>
+        <Exec Command="make" WorkingDirectory="../Libraries/Flac" />
+    </Target>
+
+    <ItemGroup>
+        <Content Include="$(ProjectDir)../Libraries/Flac/src/libFLAC/.libs/libFLAC.so" 
+            CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

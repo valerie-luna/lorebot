@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <Import Condition="'$(ARM)'=='true'" Project="../Libraries/Flac.proj" />
+  <Import Condition="'$(ARM)'=='true'" Project="../Libraries/Soxr.proj" />
+  <!-- this one needs to be compiled even on x86 - it's super small tho -->
+  <Import Project="../Libraries/DrLibs.proj" />
+  
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+    <PackageReference Include="Antlr4BuildTasks" Version="12.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="MuxLexer.g4;MuxParser.g4">
+      <Package>AudioMux.Parser</Package>
+      <Visitor>true</Visitor>
+      <Listener>false</Listener>
+    </Antlr4>
+  </ItemGroup>
+
+</Project>

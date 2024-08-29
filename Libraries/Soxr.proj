@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="MakeSoxrArm" BeforeTargets="CoreCompile" Condition="'$(ARM)'=='true'" >
+        <MakeDir Directories="../Libraries/Soxr/build" />
+        <Exec 
+            Command="cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DBUILD_TESTS=0 .."
+            WorkingDirectory="../Libraries/Soxr/build" />
+        <Exec 
+            Command="make"
+            WorkingDirectory="../Libraries/Soxr/build" />
+    </Target>
+
+    <Target Name="MakeSoxr" BeforeTargets="CoreCompile" Condition="'$(ARM)'!='true'" >
+        <Exec 
+            Command="./go" 
+            WorkingDirectory="../Libraries/Soxr"/>
+    </Target>
+
+    <ItemGroup Condition="'$(ARM)'!='true'">
+        <Content Include="$(ProjectDir)../Libraries/Soxr/Release/src/libsoxr.so" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(ARM)'=='true'">
+        <Content Include="$(ProjectDir)../Libraries/Soxr/build/src/libsoxr.so" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

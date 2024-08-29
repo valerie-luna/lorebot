@@ -1,0 +1,24 @@
+[submodule "PortAudio"]
+	path = Libraries/PortAudio
+	url = git@github.com:PortAudio/portaudio.git
+[submodule "Flac"]
+	path = Libraries/Flac
+	url = git@github.com:xiph/flac.git
+[submodule "Opus"]
+	path = Libraries/Opus
+	url = git@github.com:xiph/opus.git
+[submodule "Soxr"]
+	path = Libraries/Soxr
+	url = git@github.com:chirlu/soxr.git
+[submodule "Libsodium"]
+	path = Libraries/Libsodium
+	url = git@github.com:jedisct1/libsodium.git
+[submodule "DrLibs"]
+	path = Libraries/DrLibs
+	url = git@github.com:mackron/dr_libs.git
+[submodule "DSharpPlus"]
+	path = Libraries/DSharpPlus
+	url = git@github.com:DSharpPlus/DSharpPlus.git
+[submodule "Testing/DiceRolling/grammarinator"]
+	path = Testing/DiceRolling/grammarinator
+	url = git@github.com:renatahodovan/grammarinator.git

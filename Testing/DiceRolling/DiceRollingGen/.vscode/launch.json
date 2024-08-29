@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug All",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/DiceRollingGen.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Override",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/DiceRollingGen.dll",
+            "args": ["override", "52:6.7*6.6--75%0.15%+303/+9.5/3/4/335.4%(3)+(-4)*(-8.5)%+53.491%(+7)+-01.0/-2+(-6)*(6)*-640571182/437/-1.6/-5*+1/56/+3-+20/-9--62-(+5.7%+14)%0.272-5.6461/-80295*+11+-1+3797/102-ed410/89+-97*+69-(4151)/(7)%1/+96/(471*4)--2/87*047.00*6668803933.0%[6]D3e781-ie81-e4-k4+l1/(-7-1*4+3)/109-+86*4%5497.6238201/4*3++1*(72.487/9*82.63*511/+4.65)-9+84452.50--81-+2/-067.98/-44/7%-35*(-09348)%((+4*+8617))"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Unlimited",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/DiceRollingGen.dll",
+            "args": ["unlimited"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

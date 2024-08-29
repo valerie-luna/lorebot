@@ -1,0 +1,5 @@
+.token
+CalendarBot.pubxml
+*.db
+*.db-shm
+*.db-wal

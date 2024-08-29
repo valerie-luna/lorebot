@@ -1,0 +1,19 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="MakeOpus" BeforeTargets="CoreCompile" Condition="'$(ARM)'!='true'">
+        <Exec Command="./autogen.sh" WorkingDirectory="../Libraries/Opus"/>
+        <Exec Command="./configure --disable-doc" WorkingDirectory="../Libraries/Opus"/>
+        <Exec Command="make" WorkingDirectory="../Libraries/Opus" />
+    </Target>
+
+    <Target Name="MakeOpusArm" BeforeTargets="CoreCompile" Condition="'$(ARM)'=='true'">
+        <Exec Command="./autogen.sh" WorkingDirectory="../Libraries/Opus"/>
+        <Exec 
+            Command="./configure --disable-doc --host=aarch64-linux-gnu --disable-extra-programs" 
+            WorkingDirectory="../Libraries/Opus"/>
+        <Exec Command="make" WorkingDirectory="../Libraries/Opus" />
+    </Target>
+
+    <ItemGroup>
+        <Content Include="$(ProjectDir)../Libraries/Opus/.libs/libopus.so" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="MakeLibSodium" BeforeTargets="CoreCompile" Condition="'$(ARM)'!='true'">
+        <Exec Command="./configure" WorkingDirectory="../Libraries/Libsodium"/>
+        <Exec Command="make clean" WorkingDirectory="../Libraries/Libsodium" />
+        <Exec Command="make" WorkingDirectory="../Libraries/Libsodium" />
+    </Target>
+
+    <Target Name="MakeLibSodiumArm" BeforeTargets="CoreCompile" Condition="'$(ARM)'=='true'">
+        <Exec Command="./configure --host=aarch64-linux-gnu" WorkingDirectory="../Libraries/Libsodium"/>
+        <Exec Command="make clean" WorkingDirectory="../Libraries/Libsodium" />
+        <Exec Command="make" WorkingDirectory="../Libraries/Libsodium" />
+    </Target>
+
+    <ItemGroup>
+        <Content Include="$(ProjectDir)../Libraries/Libsodium/src/libsodium/.libs/libsodium.so" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

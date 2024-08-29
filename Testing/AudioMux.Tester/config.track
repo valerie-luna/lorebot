@@ -1,0 +1,13 @@
+track TBS_Hard flac(tbs_hard.flac);
+track TBS_Soft flac(tbs_soft.flac);
+
+track tbsMix mix(TBS_Hard, TBS_Soft);
+
+track pan flac(pan.flac);
+
+signal Sig;
+
+track tbsWithPan mix(TBS_Soft, signal(pan.flac:Sig));
+
+export tbsMix;
+export tbsWithPan;
